@@ -5,3 +5,5 @@ birth of users and type of users such as admin, elevated access users or regular
 It has following functions:        
 • Sign-Up function: If user has not registered yet, he/she has to sign up first then proceed ahead.
 • Log-In function: If user is already registered then he/she has to sign in to access other modules.
+• Request for elevated access: User can request admin to make them Elevated access user.
+• Edit profile: Users can edit their information
