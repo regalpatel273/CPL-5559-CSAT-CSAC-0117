@@ -6,3 +6,10 @@ It has following functions:
 • Sign-Up function: If user has not registered yet, he/she has to sign up first then proceed ahead.
 • Request for elevated access: User can request admin to make them Elevated access user.
 • Edit profile: Users can edit their information
+
+User’s information needed:
+• First Name
+• Last name
+• Email address
+• Password
+• Date of Birth
