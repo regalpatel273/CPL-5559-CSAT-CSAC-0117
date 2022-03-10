@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Research Management Portal</title>
+    <link rel="stylesheet" href="static/styles/login_signup.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light py-1" style="background-color: #F0F0F0;">
+        <div class="container">            
+            <a href="welcome.html" class="navbar-brand">
+                <img src="static/images/Logo.png" alt="logo" height="100" width="100" class="navbar-brand">
+                Research Management Portal
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navmenu"> 
+                <ul class="navbar-nav ms-auto d-flex">
+                    <li class="nav-item align-self-start">
+                        <a href="users.html" class="nav-link text-secondary mr-2 font-weight-bold" style="color: #A9A9A9;">Users</a>
+                    </li>
+                    <li class="nav-item align-self-start">
+                        <a href="access_requests.html" class="nav-link text-secondary mr-2 font-weight-bold" style="color: #A9A9A9;">Access Requests</a>
+                    </li>
+                    <li class="nav-item align-self-start">
+                        <div class="btn-group">
+                            <a href="profile.html" class="btn btn-sm font-weight-bold text-secondary" style="color: #A9A9A9;"><img src="static/images/blank.png" class="rounded-circle" height="30" alt=""> Admin</a>
+                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="login_signup.html">Log out</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>        
+        </div>       
+    </nav>
+
+    <section class="bg-light text-dark p-5">
+        <div class="container">
+            <div class="d-md-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-left">
+                    <label for="department" class="form-control" style="border: none;">Department: </label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected>---------------------</option>
+                        <option value="1">Virology</option>
+                        <option value="2">Technology</option>
+                        <option value="3">Food Microbiology</option>
+                        <option value="4">Neural Networks</option>
+                        <option value="5">Wireless Networks</option>
+                      </select>
+                </div>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-secondary" type="button">Add User</button>
+                </div>
+                <div class="d-flex align-items-right">
+                    <input type="text" class="form-control col-9" placeholder="Enter Name" />
+                    <button class="btn btn-dark" type="button">Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <table class="table table-striped mt-3 text-center">
+        <thead>
+            <tr>
+              <th scope="col">User ID</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Access Type</th>
+              <th scope="col">Department</th>
+              <th scope="col">#</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John</td>
+              <td>Doe</td>
+              <td>HOD</td>
+              <td>Virology</td>
+              <td><i class="bi bi-trash"></i></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jack</td>
+                <td>Daniels</td>
+                <td>Regular User</td>
+                <td>Technology</td>
+                <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Daniel</td>
+                <td>Craig</td>
+                <td>Regular User</td>
+                <td>Food Microbiology</td>
+                <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Johnny</td>
+                <td>Walker</td>
+                <td>Regular User</td>
+                <td>Neural Networks</td>
+                <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Walter</td>
+                <td>White</td>
+                <td>Regular User</td>
+                <td>Virology</td>
+                <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Jesse</td>
+                <td>Pinkman</td>
+                <td>Regular User</td>
+                <td>Food Microbiology</td>
+                <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Michael</td>
+                <td>Schoffield</td>
+                <td>Regular User</td>
+                <td>Virology</td>
+                <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Tommy</td>
+                <td>Shelby</td>
+                <td>HOD</td>
+                <td>Neural Networks</td>
+                <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Harvey</td>
+                <td>Specter</td>
+                <td>HOD</td>
+                <td>Virology</td>
+                <td><i class="bi bi-trash"></i></td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Mike</td>
+                <td>Ross</td>
+                <td>Regular User</td>
+                <td>Technology</td>
+                <td><i class="bi bi-trash"></i></td>
+              </tr>
+          </tbody>
+    </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

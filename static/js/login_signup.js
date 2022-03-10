@@ -1,0 +1,10 @@
+$(document).ready(function(){
+    $('#sign-up-link').click(function(){
+        $('#sign-up').fadeIn()
+        $('#sign-in').fadeOut()
+    })
+    $('#sign-in-link').click(function(){
+        $('#sign-in').fadeIn()
+        $('#sign-up').fadeOut()
+    })
+})
