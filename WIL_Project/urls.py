@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('module.urls')),
+    path('',include('user_management_module.urls')),
     path('captcha',include('captcha.urls')),
 ]
 
