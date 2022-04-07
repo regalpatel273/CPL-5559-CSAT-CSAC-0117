@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body{
+        background-color: #F0F0F0;
+    }
+    /* input[type='text'],
+    input[type='password'],
+    input[type='email']{ */
+    input{
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+    form{
+        margin: auto; 
+        border: 1px solid black; 
+        border-radius: 10px;
+        background-color: white;
+    }
+</style>
+<div class="text-center mt-5" id="sign-up">
+        
+    <form action="" class="col col-sm-4 p-5 uniForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-5">
+            <img src="{% static 'images/Logo.png' %}" alt="logo" height="200" class="col-10 col-sm-9">
+        </div>
+
+        <div class="mt-3">
+            {% if field.errors %}
+                <ul>
+                    {% for error in field.errors %}
+                    <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        {% for field in form %}
+        <div class="mt-3">
+            <div class="form__group form__group">
+            <label for="room_name" class="form-label">{{field.label}}</label><br>
+            {{field}}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="mt-3">
+            <button type="submit" class="btn btn-lg btn-dark btn-block bg-secondary">Add User</button>
+        </div>
+        
+    </form>
+</div>
+{% endblock content %}

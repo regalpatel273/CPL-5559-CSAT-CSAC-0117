@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="bg-light text-dark p-5">
+  <div class="container">
+      <div class="d-md-flex justify-content-between align-items-center">
+          <div class="dropdown d-flex align-items-left">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Department:
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              {% for department in departments %}
+                <li><a class="dropdown-item" href="{% url 'users-page' department.id %}">{{department.name}}</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+
+          <form action="{% url 'users' %}" method="get" class="d-flex align-items-right">
+              <input type="text" name="q" class="form-control col-9" placeholder="Enter Name" />
+              <button class="btn btn-dark" type="submit">Search</button>
+          </form>
+      </div>
+  </div>
+</section>
+
+<table class="table table-striped mt-3 text-center">
+    <thead>
+        <tr>
+          <th scope="col">Request ID</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Department</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for request in requests %}
+        <tr>
+          <td>{{request.id}}</td>
+          <td>{{request.user.first_name}}</td>
+          <td>{{request.user.last_name}}</td>
+          <td>{{request.user.department.name}}</td>
+          <td>
+            {% if request.approve %}
+            Approved
+            {% elif request.deny %}
+            Denied
+            {% else %}
+            Pending
+            {% endif %}
+          </td>           
+          <td>
+            {% if request.approve %}
+            <i class="bi bi-hand-thumbs-up-fill"></i>
+            {% else %}
+            <a href="{% url 'approve-requests' request.id %}"><i class="bi bi-hand-thumbs-up btn"></i></a>
+            {% endif %}
+            {% if request.deny %}
+            <i class="bi bi-hand-thumbs-down-fill"></i>
+            {% else %}
+            <a href="{% url 'deny-requests' request.id %}"><i class="bi bi-hand-thumbs-down btn"></i></a>
+            {% endif %}
+            <a href="{% url 'delete-requests' request.id %}"><i class="bi bi-trash btn"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+{% endblock content %}
