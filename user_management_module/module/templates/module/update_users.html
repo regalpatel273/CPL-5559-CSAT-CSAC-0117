@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body{
+        background-color: #F0F0F0;
+    }
+    label{
+        width: auto;
+        display: inline-block;
+    }
+    select,
+    textarea,
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='date']{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+    form{
+        margin: auto; 
+        border: 1px solid black; 
+        border-radius: 10px;
+        background-color: white;
+    }
+    form.img{
+        width:80px;
+    }
+</style>
+<div class="text-center mt-5" id="sign-up">
+        
+    <form action="" class="col col-sm-4 p-5 uniForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-5">
+            <img src="{% static 'images/Logo.png' %}" alt="logo" height="200" class="col-10 col-sm-9">
+        </div>
+        {% if messages %}
+            <ul class="messages" style="color: red; list-style: none;">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% for field in form %}
+        <div class="mt-3">
+            {% if field.label != 'Department' and field.label != 'Head of department' %}
+            <div>
+            <label>{{field.label}}</label><br>
+            {{field}}
+            </div>
+            {% endif %}
+            {% if request.user.is_superuser and field.label == 'Department' %}
+            <div>
+            <label>{{field.label}}</label><br>
+            {{field}}
+            </div>
+            {% endif %}
+            {% if request.user.is_superuser and field.label == 'Head of department' %}
+            <div>
+            <label>{{field.label}}</label><br>
+            {{field}}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <br>
+        <hr>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-md btn-dark btn-secondary">Update</button>
+            <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary btn-md ml-2">Cancel</a>
+        </div>
+        
+    </form>
+</div>
+{% endblock content %}

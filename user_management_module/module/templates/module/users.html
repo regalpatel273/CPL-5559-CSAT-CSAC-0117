@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="bg-light text-dark p-5">
+  <div class="container">
+      <div class="d-md-flex justify-content-between align-items-center">
+          <div class="dropdown d-flex align-items-left">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Department:
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              {% for department in departments %}
+                <li><a class="dropdown-item" href="{% url 'users-page' department.id %}">{{department.name}}</a></li>
+              {% endfor %}
+              </ul>
+            </div>
+          {% if request.user.is_superuser %}
+          <div class="d-flex align-items-center">
+              <a href="{% url 'add-user' %}" class="btn btn-secondary btn-md">Add User</a>
+          </div>
+          {% endif %}
+          <form action="{% url 'users' %}" method="get" class="d-flex align-items-right">
+              <input type="text" name="q" class="form-control col-9" placeholder="Enter Name" />
+              <button class="btn btn-dark" type="submit">Search</button>
+          </form>
+      </div>
+  </div>
+</section>
+
+<table class="table table-striped mt-3 text-center">
+    <thead>
+        <tr>
+          <th scope="col">User ID</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Access Type</th>
+          <th scope="col">Department</th>
+          {% if request.user.is_superuser %}<th scope="col">Delete user</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{user.id}}</td>
+          <td><a href="{% url 'profile' user.id %}">{{user.first_name}}</a></td>
+          <td>{{user.last_name}}</td>
+          {% if user.is_superuser %}
+          <td>Administrator</td>
+          {% elif user.is_hod %}
+          <td>Head of Department</td>
+          {% else %}
+          <td>Regular User</td>
+          {% endif %}
+          <td>{{user.department.name}}</td>
+          {% if request.user.is_superuser %}<td><a href="{% url 'delete-user' user.id %}"><i class="bi bi-trash"></i></a></td>{% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+{% endblock content %}
