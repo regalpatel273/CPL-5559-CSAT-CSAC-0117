@@ -27,7 +27,14 @@ class UserForm(UserCreationForm):
     )
     class Meta:
         model = User
+        fields = ['email','username','first_name','last_name','password1','password2','date_of_birth','phone_number','bio', 'avatar']
+
+
+class UserAdminForm(UserCreationForm):
+    date_of_birth = forms.DateField(widget=DateInput)
+    phone_number = PhoneNumberField(
+        widget = PhoneNumberPrefixWidget()
+    )
+    class Meta:
+        model = User
         fields = ['email','username','first_name','last_name','password1','password2','date_of_birth','phone_number','bio', 'avatar','department','head_of_department']
-
-
-
