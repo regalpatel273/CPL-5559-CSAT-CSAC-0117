@@ -47,28 +47,15 @@
             </ul>
         {% endif %}
         {% for field in form %}
-        <div class="mt-3">
-            {% if field.label != 'Department' and field.label != 'Head of department' %}
+        <div class="mt-3"> 
+           
             <div>
-            <label>{{field.label}}</label><br>
+            <label>{{field.label}}:</label><br>
             {{field}}
-            </div>
-            {% endif %}
-            {% if request.user.is_superuser and field.label == 'Department' %}
-            <div>
-            <label>{{field.label}}</label><br>
-            {{field}}
-            </div>
-            {% endif %}
-            {% if request.user.is_superuser and field.label == 'Head of department' %}
-            <div>
-            <label>{{field.label}}</label><br>
-            {{field}}
-            </div>
-            {% endif %}
+            </div>    
+            
         </div>
         {% endfor %}
-        <br>
         <hr>
         <div class="mt-3">
             <button type="submit" class="btn btn-md btn-dark btn-secondary">Update</button>

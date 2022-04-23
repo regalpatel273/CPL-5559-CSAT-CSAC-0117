@@ -4,7 +4,7 @@
         {% if user.is_superuser %}
         <h1 class="text-center mb-4">Welcome {{user.get_full_name}}</h1>
         <h3 class="text-center mb-4">You are an administrator</h3>
-        {% elif user.is_hod %}
+        {% elif user.head_of_department %}
         <h1 class="text-center mb-4">Welcome {{user.get_full_name}}</h1>
         <h3 class="text-center mb-4">You are head of the Department: {{user.department}}</h3>
         {% else %}

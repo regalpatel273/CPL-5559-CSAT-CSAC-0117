@@ -3,24 +3,28 @@
 <section class="bg-light text-dark p-5">
   <div class="container">
       <div class="d-md-flex justify-content-between align-items-center">
-          <div class="dropdown d-flex align-items-left">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                Department:
-              </a>
-            
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              {% for department in departments %}
-                <li><a class="dropdown-item" href="{% url 'users-page' department.id %}">{{department.name}}</a></li>
-              {% endfor %}
-              </ul>
-            </div>
+          
           {% if request.user.is_superuser %}
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-left">
               <a href="{% url 'add-user' %}" class="btn btn-secondary btn-md">Add User</a>
           </div>
           {% endif %}
+          <form action="{% url 'users' %}" method="get" class="d-flex align-items-center">
+            <select class="form-select btn btn-outline-secondary" name="sort">
+              <option disabled="true" selected>Sort (by name):</option>
+              <option>A-Z</option>
+              <option>Z-A</option>
+            </select>
+            <button class="btn btn-dark" type="submit">Sort</button>
+          </form>
           <form action="{% url 'users' %}" method="get" class="d-flex align-items-right">
-              <input type="text" name="q" class="form-control col-9" placeholder="Enter Name" />
+            <select class="form-select btn btn-outline-secondary" name="dept">
+              <option disabled="true" selected>Department:</option>
+              {% for department in departments %}
+              <option>{{department.name}}</option>
+              {% endfor %}
+            </select>
+              <input type="text" name="q" class="form-control col-6" placeholder="Enter Name" />
               <button class="btn btn-dark" type="submit">Search</button>
           </form>
       </div>
@@ -46,7 +50,7 @@
           <td>{{user.last_name}}</td>
           {% if user.is_superuser %}
           <td>Administrator</td>
-          {% elif user.is_hod %}
+          {% elif user.head_of_department %}
           <td>Head of Department</td>
           {% else %}
           <td>Regular User</td>

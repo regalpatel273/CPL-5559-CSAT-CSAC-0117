@@ -5,22 +5,24 @@
         <div class="card m-3" style="border: none;">
             <div class="card-body text-center"  style="background-color: #E8E8E8;">
                 <img src="{{user.avatar.url}}" class="rounded-circle mb-0" height="150" width="160" alt=""><br>
-                {% if not user.is_superuser and not user.is_hod or user == request.user or request.user.is_superuser %}<a href="{% url 'edit-user' user.id %}"><i class="bi bi-pencil-square btn btn-sm btn-light mt-3 ml-3"> Edit</i></a>{% endif %}
-                {% if not request.user.is_hod and not request.user.is_superuser %}
-                {% if requests.user.id == request.user.id %}
-                <span class="btn btn-light btn-sm mt-3 ml-3 disabled"><i class="bi bi-person-plus-fill"> Request sent</i></span>
-                {% else %}
-                <a href="{% url 'requests' user.id %}" class="btn btn-light btn-sm mt-3 ml-3"><i class="bi bi-person-plus"> Elevated access</i></a>
+                {% if not user.is_superuser and not user.head_of_department or user == request.user or request.user.is_superuser %}
+                    <a href="{% url 'edit-user' user.id %}"><i class="bi bi-pencil-square btn btn-sm btn-light mt-3 ml-3"> Edit</i></a>
                 {% endif %}
-                {% if not requests.approve and not requests.deny and request.user.id == requests.user.id %}
-                <p class="card-text">Access request is pending approval</p>
-                {% elif requests.deny and requests.user.id == request.user.id %}
-                <p class="card-text" style="color: red;">Access request declined</p>
-                {% elif requests.approve and requests.user.id == request.user.id %}
-                <p class="card-text" style="color: green;">Access request approved</p>
-                {% else %}
-                <p class="card-text"></p>
-                {% endif %}
+                {% if not request.user.head_of_department and not request.user.is_superuser %}
+                    {% if requests.user.id == request.user.id %}
+                        <span class="btn btn-light btn-sm mt-3 ml-3 disabled"><i class="bi bi-person-plus-fill"> Request sent</i></span>
+                    {% else %}
+                        <a href="{% url 'requests' user.id %}" class="btn btn-light btn-sm mt-3 ml-3"><i class="bi bi-person-plus"> Elevated access</i></a>
+                    {% endif %}
+                    {% if not requests.approve and not requests.deny and request.user.id == requests.user.id %}
+                        <p class="card-text">Access request is pending approval</p>
+                    {% elif requests.deny and requests.user.id == request.user.id %}
+                        <p class="card-text" style="color: red;">Access request declined</p>
+                    {% elif requests.approve and requests.user.id == request.user.id %}
+                         <p class="card-text" style="color: green;">Access request approved</p>
+                    {% else %}
+                        <p class="card-text"></p>
+                    {% endif %}
                 {% endif %}
                 <h3 class="card-title my-3">{{user.get_full_name}}</h3>
                 <p class="card-text"></p>
@@ -32,7 +34,7 @@
                     <span style="font-weight:bold;">
                         {% if user.is_superuser %}
                         Administrator
-                        {% elif user.is_hod %}
+                        {% elif user.head_of_department %}
                         Head of Department
                         {% else %}
                         Regular User

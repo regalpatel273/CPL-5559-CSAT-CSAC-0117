@@ -41,7 +41,7 @@
                 <img src="{% static 'images/Logo.png' %}" alt="logo" height="200" class="col-10 col-sm-9">
             </div>
             {% if messages %}
-            <ul class="messages">
+            <ul class="messages" style="color: red; list-style: none;">
             {% for message in messages %}
                 <li>{{ message }}</li>
             {% endfor %}
