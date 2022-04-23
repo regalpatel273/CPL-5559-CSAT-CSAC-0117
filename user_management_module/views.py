@@ -32,7 +32,7 @@ def loginPage(request):
 
 
     context = {'page':page}
-    return render(request,'user_management_module/login_signup.html',context)
+    return render(request,'user_management_module/index.html',context)
 
 def logoutPage(request):
     logout(request)
